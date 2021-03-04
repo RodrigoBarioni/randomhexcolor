@@ -1,37 +1,65 @@
-## Welcome to GitHub Pages
+<?php 
+$i=0;
+function random_color_part() {
+	return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+}
 
-You can use the [editor on GitHub](https://github.com/RodrigoBarioni/randomhexcolor/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/RodrigoBarioni/randomhexcolor/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+function random_color() {
+	return random_color_part() . random_color_part() . random_color_part();
+}
+$color = "#".random_color();
+If($color == "#FFFFFF"){
+	$color = "#".random_color();
+}
+?>
+<script>
+function copiarTexto() {
+	var textoCopiado = document.getElementById("link");
+	textoCopiado.select();
+	document.execCommand("Copy");
+	alert("Texto Copiado: " + textoCopiado.value);
+}
+</script>
+<html>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Aleo:wght@300&display=swap');
+</style>
+<style>
+body
+{
+	background-color:<?php echo $color;?>;
+}
+.centered {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+input{
+	text-transform: ;
+	width:auto;
+	text-shadow: 1px 1px 2px #000000;
+	background-color:transparent; 
+	border-radius:0; 
+	text-align: center; 
+	font-size: 20px;
+border:0;
+	color:#ffffff;
+	font-family:"Aleo";
+	caret-color: transparent;
+}
+input:hover{
+	width:auto;
+	text-shadow: 1px 1px 2.5px #000000;
+	cursor: pointer;
+}
+textarea:focus, input:focus, select:focus {
+	box-shadow: 0 0 0 0;
+	border: 0 none;
+	outline: 0;
+} 
+</style>
+<center>
+<input class="centered" title="Clique para copiar o texto" id="link" name="link" onClick="copiarTexto();" value="<?php echo $color;?>">
+</center>
+</html>
